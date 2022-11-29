@@ -16,20 +16,23 @@
 
 package com.example.compose.rally
 
+import android.graphics.Color.toArgb
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.compose.rally.ui.accounts.AccountsScreen
 import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.theme.RallyTheme
+import com.google.android.material.bottomappbar.BottomAppBar
 
 /**
  * This Activity recreates part of the Rally Material Study from
@@ -39,17 +42,27 @@ class RallyActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // set transparent status bar
+//            this.window.statusBarColor = Color.Transparent.toArgb()
             RallyApp()
         }
     }
 }
 
 @Composable
+@Preview
 fun RallyApp() {
     RallyTheme {
         var currentScreen: RallyDestination by remember { mutableStateOf(Overview) }
         Scaffold(
-            topBar = {
+//            topBar = {
+//                RallyTabRow(
+//                    allScreens = rallyTabRowScreens,
+//                    onTabSelected = { screen -> currentScreen = screen },
+//                    currentScreen = currentScreen
+//                )
+//            },
+            bottomBar = {
                 RallyTabRow(
                     allScreens = rallyTabRowScreens,
                     onTabSelected = { screen -> currentScreen = screen },

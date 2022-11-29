@@ -105,6 +105,9 @@ dependencies {
     // Compose testing dependencies
     androidTestImplementation "androidx.compose.ui:ui-test-junit4"
     debugImplementation "androidx.compose.ui:ui-test-manifest"
+
+    // System UI
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.1"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {

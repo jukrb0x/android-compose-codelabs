@@ -16,23 +16,41 @@
 
 package com.example.compose.rally.ui.theme
 
+import android.view.Window
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 
+//fun rememberSystemUiController(
+//    window: Window? = findWindow(),
+//): SystemUiController {
+//    val view = LocalView.current
+//    return remember(view, window) { AndroidSystemUiController(view, window) }
+//}
 /**
  * A [MaterialTheme] for Rally.
  */
 @Composable
 fun RallyTheme(content: @Composable () -> Unit) {
-
     MaterialTheme(colors = ColorPalette, typography = Typography, content = content)
+/*
+    val systemUiController = rememberSystemUiController()
+    if(isSystemInDarkTheme()){
+        systemUiController.setSystemBarsColor(
+            color = Color.Transparent
+        )
+    }
+*/
+
 }
 
 /**

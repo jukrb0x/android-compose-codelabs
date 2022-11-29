@@ -16,6 +16,7 @@
 
 package com.example.compose.rally.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,10 +29,15 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.example.compose.rally.data.UserData
+import kotlin.math.log
 
 /**
  * Generic component used by the accounts and bills screens to show a chart and a list of items.
@@ -46,18 +52,23 @@ fun <T> StatementBody(
     circleLabel: String,
     rows: @Composable (T) -> Unit
 ) {
+    Log.d("StatementBody", "$circleLabel")
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
         Box(Modifier.padding(16.dp)) {
             val accountsProportion = items.extractProportions { amounts(it) }
             val circleColors = items.map { colors(it) }
+
+            // the circle and the text
+            // two of them are centered in the Box()
             AnimatedCircle(
                 accountsProportion,
                 circleColors,
                 Modifier
-                    .height(300.dp)
+                     .height(300.dp)
                     .align(Alignment.Center)
                     .fillMaxWidth()
             )
+
             Column(modifier = Modifier.align(Alignment.Center)) {
                 Text(
                     text = circleLabel,
